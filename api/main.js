@@ -7,15 +7,15 @@ import bodyParser from 'body-parser'
 import router from '../Routes/signup.js'
 import ModalRoutes from '../Routes/Modal.js'
 import cookieParser from 'cookie-parser'
-// import dotenv from "dotenv"
-// dotenv.config(); 
+import dotenv from "dotenv"
+dotenv.config(); 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 // router.use(cors())
 
 const app = express()
 const port = 3000
-mongoose.connect("mongodb://localhost:27017/Notes").then(() => {
+mongoose.connect(process.env.DATABASE_URL).then(() => {
   console.log('Connected to MongoDB')
 }).catch(err => {
   console.error('Error connecting to MongoDB', err)
