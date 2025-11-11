@@ -24,10 +24,26 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:5173", // or your frontend URL
-  credentials: true,
-}));
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://personal-diary-app-frontend.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+
+// app.use(cors({
+//   origin: "http://localhost:5173", // or your frontend URL
+//   credentials: true,
+// }));
 
 app.use(cookieParser())
 app.use("/signup", signupRoutes)
