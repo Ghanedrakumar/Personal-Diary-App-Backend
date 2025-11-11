@@ -1,4 +1,6 @@
+
 {
+  "type": "module",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
