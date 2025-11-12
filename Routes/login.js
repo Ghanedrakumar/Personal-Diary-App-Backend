@@ -12,7 +12,10 @@ router.use(bodyParser.urlencoded({ extended: true }))
 // router.use(cors())
 // in app.js or index.js
 router.use(cors({
-    origin: "http://localhost:5173", // adjust to your frontend URL
+    // origin: "http://localhost:5173", // adjust to your frontend URL
+    origin: [
+    "http://localhost:5173",
+  ],
     credentials: true, // 🔑 This allows cookies
 }));
 // this is for login route  
@@ -24,9 +27,11 @@ router.post("/login", async (req, res) => {
         const user = await Biometric.findOne({ email: email });
         if (!user) {
             return res.status(400).json({ message: "Invalid email or password" });
+
         }
         if (user.password !== password) {
             return res.status(400).json({ message: "Invalid email or password" });
+            
         }
         // const token =jwt.sign({id: user._id},process.env.JWT_SECRET)
         // ✅ Check secret
