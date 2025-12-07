@@ -7,12 +7,6 @@ import dotenv from "dotenv";
 import { verifyToken } from "../utils/verifyUser.js";
 dotenv.config();
 const router = Router()
-router.use(cors(
-    {
-        origin: "http://localhost:5173",
-        credentials: true,
-    }
-));
 
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
