@@ -8,12 +8,6 @@ import { errorHandler } from "../utils/error.js";
 const router = Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
-// router.use(cors())
-router.use(cors({
-    origin: "http://localhost:5173", // adjust to your frontend URL
-    credentials: true, // 🔑 This allows cookies
-}));
-
 router.use(cookieParser());
 // This is for storing the title content and tags in mongodb
 

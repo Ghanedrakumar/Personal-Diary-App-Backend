@@ -2,12 +2,10 @@
 import express ,{Router} from "express";
 import Biometric from "../models/registration.js";
 import bodyParser from "body-parser";
-import cors from "cors";
-
 const router =Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
-router.use(cors())
+
 router.post("/signup", async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
     console.log(req.body);

@@ -9,8 +9,6 @@ import ModalRoutes from '../Routes/Modal.js'
 import cookieParser from 'cookie-parser'
 import dotenv from "dotenv"
 dotenv.config(); 
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: true }))
 // router.use(cors())
 
 const app = express()
@@ -23,36 +21,14 @@ mongoose.connect(process.env.DATABASE_URL).then(() => {
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
-
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://personal-diary-app-frontend.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-
-
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://personal-diary-app-frontend.vercel.app"
-// ];
-
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
-
-// app.use(cors({
-//   origin: "http://localhost:5173", // or your frontend URL
-//   credentials: true,
-// }));
+app.use(cors(
+  {origin: "http://localhost:5173",
+  credentials: true,
+}
+));
 
 app.use(cookieParser())
 app.use("/signup", signupRoutes)

@@ -7,17 +7,15 @@ import dotenv from "dotenv";
 import { verifyToken } from "../utils/verifyUser.js";
 dotenv.config();
 const router = Router()
+router.use(cors(
+    {
+        origin: "http://localhost:5173",
+        credentials: true,
+    }
+));
+
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
-// router.use(cors())
-// in app.js or index.js
-router.use(cors({
-    // origin: "http://localhost:5173", // adjust to your frontend URL
-    origin: [
-    "http://localhost:5173",
-  ],
-    credentials: true, // 🔑 This allows cookies
-}));
 // this is for login route  
 
 router.post("/login", async (req, res) => {
@@ -57,7 +55,7 @@ router.post("/login", async (req, res) => {
         })
 
             .status(200)
-            .json({ success: "true", message: "Login Successful", rest });
+            .json({ success: "true", message: "Login Successful", rest});
 
 
     } catch (error) {
